@@ -35,7 +35,7 @@ module "lambda" {
   s3_key      = var.package_s3_key
   image       = var.package_image
   subnet_ids  = var.subnet_ids
-  security_group_ids = security_group_ids
+  security_group_ids = var.security_group_ids
   name        = local.lambda_name
   runtime     = var.runtime
   handler     = var.handler
