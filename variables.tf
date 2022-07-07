@@ -22,6 +22,18 @@ variable "package_s3_key" {
   type    = string
   default = null
 }
+variable "package_image" {
+  type    = string
+  default = null
+}
+variable "subnet_ids" {
+  type    = list(string)
+  default = null
+}
+variable "security_group_ids" {
+  type    = list(string)
+  default = null
+}
 variable "data_s3_bucket" {
   type    = string
   default = null
