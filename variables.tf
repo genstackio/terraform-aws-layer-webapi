@@ -28,11 +28,11 @@ variable "package_image" {
 }
 variable "subnet_ids" {
   type    = list(string)
-  default = null
+  default = []
 }
 variable "security_group_ids" {
   type    = list(string)
-  default = null
+  default = []
 }
 variable "data_s3_bucket" {
   type    = string
