@@ -76,6 +76,10 @@ variable "forward_query_string" {
   type    = bool
   default = null
 }
+variable "forward_cookies" {
+  type    = bool
+  default = null
+}
 variable "price_class" {
   type    = string
   default = "PriceClass_100"
