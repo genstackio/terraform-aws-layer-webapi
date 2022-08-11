@@ -1,21 +1,21 @@
 module "api" {
-  source               = "genstackio/api-lambda/aws"
-  version              = "0.5.4"
-  name                 = var.name
-  env                  = var.env
-  lambda_arn           = module.lambda.arn
-  dns                  = var.dns
-  dns_zone             = var.dns_zone
-  forward_query_string = var.forward_query_string
-  forward_cookies      = var.forward_cookies
-  price_class          = var.price_class
-  geolocations         = var.geolocations
-  accesslogs_s3_bucket = var.accesslogs_s3_bucket
-  functions            = var.functions
-  static_assets        = var.static_assets
-  edge_lambdas         = var.edge_lambdas
-  forwarded_headers    = var.forwarded_headers
-  edge_lambdas_variables = var.edge_lambdas_variables
+  source                     = "genstackio/api-lambda/aws"
+  version                    = "0.5.4"
+  name                       = var.name
+  env                        = var.env
+  lambda_arn                 = module.lambda.arn
+  dns                        = var.dns
+  dns_zone                   = var.dns_zone
+  forward_query_string       = var.forward_query_string
+  forward_cookies            = var.forward_cookies
+  price_class                = var.price_class
+  geolocations               = var.geolocations
+  accesslogs_s3_bucket       = var.accesslogs_s3_bucket
+  functions                  = var.functions
+  static_assets              = var.static_assets
+  edge_lambdas               = var.edge_lambdas
+  forwarded_headers          = var.forwarded_headers
+  edge_lambdas_variables     = var.edge_lambdas_variables
   static_assets_functions    = var.static_assets_functions
   static_assets_edge_lambdas = var.static_assets_edge_lambdas
   default_ttl                = var.default_ttl
@@ -29,21 +29,21 @@ module "api" {
 }
 
 module "lambda" {
-  source      = "genstackio/lambda/aws"
-  version     = "0.3.1"
-  file        = var.package_file
-  s3_bucket   = var.package_s3_bucket
-  s3_key      = var.package_s3_key
-  image       = var.package_image
-  subnet_ids  = var.subnet_ids
+  source             = "genstackio/lambda/aws"
+  version            = "0.3.1"
+  file               = var.package_file
+  s3_bucket          = var.package_s3_bucket
+  s3_key             = var.package_s3_key
+  image              = var.package_image
+  subnet_ids         = var.subnet_ids
   security_group_ids = var.security_group_ids
-  name        = local.lambda_name
-  runtime     = var.runtime
-  handler     = var.handler
-  timeout     = var.timeout
-  memory_size = var.memory_size
-  publish     = var.publish
-  layers      = var.layers
+  name               = local.lambda_name
+  runtime            = var.runtime
+  handler            = var.handler
+  timeout            = var.timeout
+  memory_size        = var.memory_size
+  publish            = var.publish
+  layers             = var.layers
   variables = merge(
     local.has_data_bucket ? {
       DATA_BUCKET_NAME = aws_s3_bucket.data[0].bucket,
