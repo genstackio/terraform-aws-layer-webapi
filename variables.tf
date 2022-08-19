@@ -163,3 +163,7 @@ variable "compress" {
   type    = bool
   default = true
 }
+variable "response_headers_policy" {
+  type    = string
+  default = null
+}
