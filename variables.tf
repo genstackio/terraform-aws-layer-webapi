@@ -171,3 +171,7 @@ variable "cache_policy" {
   type    = string
   default = null
 }
+variable "origin_request_policy" {
+  type    = string
+  default = null
+}
