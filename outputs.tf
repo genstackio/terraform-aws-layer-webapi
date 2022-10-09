@@ -31,3 +31,6 @@ output "cloudfront_id" {
 output "cloudfront_arn" {
   value = module.api.cloudfront_arn
 }
+output "cloudfront_origin_access_identity_iam_arn" {
+  value = module.api.cloudfront_origin_access_identity_iam_arn
+}
