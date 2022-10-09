@@ -1,6 +1,6 @@
 module "api" {
   source                     = "genstackio/api-lambda/aws"
-  version                    = "0.6.3"
+  version                    = "0.6.4"
   name                       = var.name
   env                        = var.env
   lambda_arn                 = module.lambda.arn
@@ -28,6 +28,7 @@ module "api" {
   response_headers_policy    = var.response_headers_policy
   cache_policy               = var.cache_policy
   origin_request_policy      = var.origin_request_policy
+  no_static_assets_bucket_policy = var.no_static_assets_bucket_policy
   providers = {
     aws     = aws
     aws.acm = aws.acm

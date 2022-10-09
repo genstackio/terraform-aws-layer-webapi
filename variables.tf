@@ -34,6 +34,10 @@ variable "security_group_ids" {
   type    = list(string)
   default = []
 }
+variable "no_static_assets_bucket_policy" {
+  type    = bool
+  default = false
+}
 variable "data_s3_bucket" {
   type    = string
   default = null
