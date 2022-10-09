@@ -116,6 +116,14 @@ variable "static_assets_edge_lambdas" {
   }))
   default = []
 }
+variable "unmanaged_static_assets_edge_lambdas" {
+  type = list(object({
+    event_type   = string
+    lambda_arn   = string
+    include_body = bool
+  }))
+  default = []
+}
 variable "functions" {
   type = list(object({
     event_type   = string
@@ -130,11 +138,27 @@ variable "static_assets_functions" {
   }))
   default = []
 }
+variable "unmanaged_static_assets_functions" {
+  type = list(object({
+    event_type   = string
+    function_arn = string
+  }))
+  default = []
+}
 variable "layers" {
   type    = list(string)
   default = []
 }
 variable "static_assets" {
+  type = list(object({
+    path_pattern = string
+    id           = string
+    bucket_id    = string
+    bucket_name  = string
+  }))
+  default = []
+}
+variable "unmanaged_static_assets" {
   type = list(object({
     path_pattern = string
     id           = string
