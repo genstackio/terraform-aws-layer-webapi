@@ -10,6 +10,10 @@ variable "dns" {
 variable "dns_zone" {
   type = string
 }
+variable "dns_alts" {
+  type    = list(string)
+  default = null
+}
 variable "package_file" {
   type    = string
   default = null
