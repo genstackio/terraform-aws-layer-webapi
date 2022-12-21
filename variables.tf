@@ -207,3 +207,12 @@ variable "origin_request_policy" {
   type    = string
   default = null
 }
+variable "error_responses" {
+  type = list(object({
+    code = number
+    ttl = optional(number)
+    response_code = optional(number)
+    response_page_path = optional(number)
+  }))
+  default = []
+}
