@@ -90,3 +90,10 @@ resource "aws_s3_bucket_acl" "data" {
   bucket = aws_s3_bucket.data[0].id
   acl    = "private"
 }
+
+module "parameters" {
+  count      = length(var.parameters) > 1 ? 1 : 0
+  source     = "genstackio/parameters/aws"
+  version    = "0.1.0"
+  parameters = var.parameters
+}
