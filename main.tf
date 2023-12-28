@@ -76,7 +76,17 @@ module "lambda" {
         effect    = "Allow"
       },
     ]
-    : []
+    : [],
+    local.has_parameters
+    ? [{
+      actions   = [
+        "ssm:GetParameter",
+        "ssm:GetParameters",
+      ]
+      resources =  [for name, parameter in module.parameters[0].parameters: parameter.arn]
+      effect    = "Allow"
+    }]
+    : [],
   )
 }
 
@@ -92,7 +102,7 @@ resource "aws_s3_bucket_acl" "data" {
 }
 
 module "parameters" {
-  count      = length(var.parameters) > 0 ? 1 : 0
+  count      = local.has_parameters ? 1 : 0
   source     = "genstackio/parameters/aws"
   version    = "0.2.1"
   parameters = var.parameters
