@@ -94,6 +94,6 @@ resource "aws_s3_bucket_acl" "data" {
 module "parameters" {
   count      = length(var.parameters) > 1 ? 1 : 0
   source     = "genstackio/parameters/aws"
-  version    = "0.1.0"
+  version    = "0.2.0"
   parameters = var.parameters
 }
