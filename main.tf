@@ -1,6 +1,6 @@
 module "api" {
   source                     = "genstackio/api-lambda/aws"
-  version                    = "0.8.0"
+  version                    = "0.9.0"
   name                       = var.name
   env                        = var.env
   lambda_arn                 = module.lambda.arn
@@ -40,7 +40,7 @@ module "api" {
 
 module "lambda" {
   source             = "genstackio/lambda/aws"
-  version            = "0.3.8"
+  version            = "0.4.2"
   file               = var.package_file
   s3_bucket          = var.package_s3_bucket
   s3_key             = var.package_s3_key
@@ -104,6 +104,6 @@ resource "aws_s3_bucket_acl" "data" {
 module "parameters" {
   count      = local.has_parameters ? 1 : 0
   source     = "genstackio/parameters/aws"
-  version    = "0.2.1"
+  version    = "0.3.0"
   parameters = var.parameters
 }
