@@ -228,3 +228,7 @@ variable "parameters" {
   }))
   default = []
 }
+variable "architectures" {
+  type    = string
+  default = "x86_64"
+}

@@ -88,6 +88,7 @@ module "lambda" {
     }]
     : [],
   )
+  architectures = var.architectures
 }
 
 resource "aws_s3_bucket" "data" {
