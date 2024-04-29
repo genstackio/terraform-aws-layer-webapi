@@ -232,3 +232,7 @@ variable "architectures" {
   type    = string
   default = "x86_64"
 }
+variable "protocol" {
+  type    = string
+  default = "HTTP"
+}
