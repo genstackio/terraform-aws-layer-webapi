@@ -5,7 +5,7 @@ output "internal_endpoint" {
   value = module.api.internal_endpoint
 }
 output "dispatch_endpoint" {
-  value = var.protocol == "WEBSOCKET" ? "${module.api.internal_endpoint}/$default/@connections" : null
+  value = var.protocol == "WEBSOCKET" ? "${replace(module.api.internal_endpoint, "wss://", "https://")}/$default/@connections" : null
 }
 output "lambda_arn" {
   value = module.lambda.arn
