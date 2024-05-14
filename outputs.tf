@@ -5,7 +5,7 @@ output "internal_endpoint" {
   value = module.api.internal_endpoint
 }
 output "dispatch_endpoint" {
-  value = var.protocol == "WEBSOCKET" ? "${replace(module.api.internal_endpoint, "wss://", "https://")}/$default/@connections" : null
+  value = var.protocol == "WEBSOCKET" ? "${replace(module.api.internal_endpoint, "wss://", "https://")}/$default" : null
 }
 output "dispatch_execution_arn_pattern" {
   value = var.protocol == "WEBSOCKET" ? "${module.api.internal_execution_arn}/$default/POST/@connections/*" : null
