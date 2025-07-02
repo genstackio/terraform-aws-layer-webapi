@@ -56,6 +56,7 @@ module "lambda" {
   memory_size        = var.memory_size
   publish            = var.publish
   layers             = var.layers
+  tracing_mode       = var.tracing_mode
   variables = merge(
     local.has_data_bucket ? {
       DATA_BUCKET_NAME = aws_s3_bucket.data[0].bucket,

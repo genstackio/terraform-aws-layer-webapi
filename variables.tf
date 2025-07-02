@@ -236,3 +236,7 @@ variable "protocol" {
   type    = string
   default = "HTTP"
 }
+variable "tracing_mode" {
+  type    = string
+  default = null
+}
