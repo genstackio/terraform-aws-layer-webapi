@@ -42,7 +42,7 @@ module "api" {
 
 module "lambda" {
   source             = "genstackio/lambda/aws"
-  version            = "0.6.1"
+  version            = "0.6.2"
   file               = var.package_file
   s3_bucket          = var.package_s3_bucket
   s3_key             = var.package_s3_key
