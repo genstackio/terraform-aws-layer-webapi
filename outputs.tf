@@ -22,6 +22,18 @@ output "lambda_name" {
 output "lambda_role_name" {
   value = module.lambda.role_name
 }
+output "event_lambda_arn" {
+  value = var.event_lambda ? module.event_lambda[0].arn : null
+}
+output "event_lambda_invoke_arn" {
+  value = var.event_lambda ? module.event_lambda[0].invoke_arn : null
+}
+output "event_lambda_name" {
+  value = var.event_lambda ? module.event_lambda[0].name : null
+}
+output "event_lambda_role_name" {
+  value = var.event_lambda ? module.event_lambda[0].role_name : null
+}
 output "data_bucket_name" {
   value = local.has_data_bucket ? aws_s3_bucket.data[0].bucket : null
 }

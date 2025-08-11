@@ -94,6 +94,61 @@ module "lambda" {
   architectures = var.architectures
 }
 
+module "event_lambda" {
+  count              = var.event_lambda ? 1 : 0
+  source             = "genstackio/lambda/aws"
+  version            = "0.6.2"
+  file               = var.package_file
+  s3_bucket          = var.package_s3_bucket
+  s3_key             = var.package_s3_key
+  image              = var.package_image
+  subnet_ids         = var.subnet_ids
+  security_group_ids = var.security_group_ids
+  name               = local.event_lambda_name
+  runtime            = var.runtime
+  handler            = var.event_handler
+  timeout            = var.event_timeout
+  memory_size        = var.memory_size
+  publish            = var.publish
+  layers             = var.layers
+  tracing_mode       = var.tracing_mode
+  variables = merge(
+    local.has_data_bucket ? {
+      DATA_BUCKET_NAME = aws_s3_bucket.data[0].bucket,
+      DATA_BUCKET_ARN  = aws_s3_bucket.data[0].arn,
+    } : {},
+    var.variables
+  )
+  policy_statements = concat(
+    var.policy_statements,
+    local.has_data_bucket
+    ? [
+      {
+        actions   = ["s3:ListBucket"]
+        resources = [aws_s3_bucket.data[0].arn]
+        effect    = "Allow"
+      },
+      {
+        actions   = ["s3:GetObject", "s3:Put*", "s3:GetObjectTagging", "s3:DeleteObject*"]
+        resources = ["${aws_s3_bucket.data[0].arn}/*"]
+        effect    = "Allow"
+      },
+    ]
+    : [],
+    local.has_parameters
+    ? [{
+      actions   = [
+        "ssm:GetParameter",
+        "ssm:GetParameters",
+      ]
+      resources =  [for name, parameter in module.parameters[0].parameters: parameter.arn]
+      effect    = "Allow"
+    }]
+    : [],
+  )
+  architectures = var.architectures
+}
+
 resource "aws_s3_bucket" "data" {
   count  = local.has_data_bucket ? 1 : 0
   bucket = var.data_s3_bucket

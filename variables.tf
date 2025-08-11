@@ -54,6 +54,10 @@ variable "timeout" {
   type    = number
   default = 29
 }
+variable "event_timeout" {
+  type    = number
+  default = 300
+}
 variable "memory_size" {
   type    = number
   default = 128
@@ -61,6 +65,10 @@ variable "memory_size" {
 variable "handler" {
   type    = string
   default = "lambda.handler"
+}
+variable "event_handler" {
+  type    = string
+  default = "lambda.handler_event"
 }
 variable "variables" {
   type    = map(string)
@@ -99,6 +107,14 @@ variable "publish" {
 variable "lambda_name" {
   type    = string
   default = null
+}
+variable "event_lambda_name" {
+  type    = string
+  default = null
+}
+variable "event_lambda" {
+  type    = bool
+  default = false
 }
 variable "accesslogs_s3_bucket" {
   type    = string
