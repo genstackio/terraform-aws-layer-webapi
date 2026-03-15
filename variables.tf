@@ -262,3 +262,10 @@ variable "tracing_mode" {
   type    = string
   default = null
 }
+variable "extra_origins" {
+  type = list(object({
+    id          = string
+    domain_name = string
+  }))
+  default = []
+}
