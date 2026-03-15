@@ -1,6 +1,6 @@
 module "api" {
   source                     = "genstackio/api-lambda/aws"
-  version                    = "0.11.6"
+  version                    = "0.11.7"
   name                       = var.name
   env                        = var.env
   lambda_arn                 = module.lambda.arn
